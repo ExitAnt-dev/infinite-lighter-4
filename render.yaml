@@ -1,0 +1,16 @@
+services:
+  - type: worker
+    name: exitant-infinite-lighter
+    runtime: image
+    plan: starter
+    region: frankfurt   # Lighter refuses requests from US addresses (20558 restricted jurisdiction) — never a US region
+    numInstances: 1
+    image:
+      url: docker.io/exitant/exitant-infinite-lighter:4
+    envVars:
+      - key: LIGHTER_WALLET_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
